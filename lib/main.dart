@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors
+import "package:assignment_saleheen/login_screen.dart";
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 import "package:assignment_saleheen/home_screen.dart";
@@ -22,6 +23,6 @@ class MyApp extends StatelessWidget {
           
           primarySwatch: Colors.blue,
         ),
-        home: HomeScreen());
+        home: LoginScreen());
   }
 }
