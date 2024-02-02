@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BusStationCard extends StatelessWidget {
-  const BusStationCard({super.key});
+  final Function? onMapFunction;
+  const BusStationCard({super.key,this.onMapFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -9,22 +10,27 @@ class BusStationCard extends StatelessWidget {
       padding: const EdgeInsets.only(left:20),
       child: Column(
         children: [
-          Card(
-            elevation: 3,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Container(
-              height: 50,
-              width: 50,
-              child: Center(
-               child:Image.asset('lib/assets/station.png',
-               height:32,
-    
-               ) ,
+          InkWell(
+            onTap: () {
+              onMapFunction!('bus stops near me');
+            },
+            child: Card(
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
               ),
+              child: Container(
+                height: 50,
+                width: 50,
+                child: Center(
+                 child:Image.asset('lib/assets/station.png',
+                 height:32,
+                
+                 ) ,
+                ),
+              ),
+                
             ),
-    
           ),
           Text('Bus Station')
         ],
