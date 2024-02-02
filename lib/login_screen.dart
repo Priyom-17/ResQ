@@ -12,7 +12,12 @@ class LoginScreen extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              CustomTextField()
+              CustomTextField(
+                hintText: 'Enter Name',
+                prefix: Icon(Icons.person),
+
+              ),
+
             ],
           ),
         )
