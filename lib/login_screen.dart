@@ -4,8 +4,23 @@ import 'package:assignment_saleheen/components/secondary_button.dart';
 import 'package:assignment_saleheen/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool isPasswordShown = false;
+  final _formKey = GlobalKey<FormState>();
+  final _formData = Map<String,Object>();
+  _onSubmit(){
+    _formKey.currentState!.validate();
+    print(_formData['email']);
+    print(_formData['password']);
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,57 +29,96 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
+          child:SingleChildScrollView(
           child: Column(
             children: [
+              
               Container(
                 height: MediaQuery.of(context).size.height*0.3,
-                child: Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        "USER LOGIN",
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: primaryColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      "USER LOGIN",
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Image.asset(
-                    'lib/assets/logoo.png',
                     
-                    height: 190,
-                    width: 200,
                     ),
-                    ],
+                    Image.asset(
+                  'lib/assets/logoo.png',
+                  
+                  height: 190,
+                  width: 200,
                   ),
+                  ],
                 ),
               ),
               
               Container(
                 height: MediaQuery.of(context).size.height*0.3,
-                child: Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      CustomTextField(
-                        hintText: 'Enter Name',
-                        prefix: Icon(Icons.person),
-                      
-                      ),
-                      CustomTextField(
-                    hintText: 'Enter Name',
-                    prefix: Icon(Icons.person),
-                  ),
-                  PrimaryButton(title: 'REGISTER', onPressed: () {}),
-                  ],
-                  ),
+                child: Form(
+                  key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CustomTextField(
+                      hintText: 'Enter email',
+                      textInputAction: TextInputAction.next,
+                      keyboardtype: TextInputType.emailAddress,
+                      prefix: Icon(Icons.person),
+                      onsave: (email){
+                        _formData['email']= email?? "";
+                        
+                      },
+                      validate: (email){
+                        if(email!.isEmpty||email.length<3||email.contains("@")){
+                          return 'enter correct email';
+                        }
+                        return null;
+
+                      },
+                    
+                    ),
+                    CustomTextField(
+                  hintText: 'Enter password',
+                  isPassword: isPasswordShown,
+
+                  prefix: Icon(Icons.vpn_key_off_rounded),
+                  onsave: (password){
+                    _formData['password']= password??"";
+
+                  },
+                   validate: (password){
+                        if(password!.isEmpty||password.length<7 ){
+                          return 'enter correct password';
+                        }
+                        return null;
+
+                      },
+                  suffix:IconButton(
+                     onPressed: () {
+                      setState((){
+                         isPasswordShown = !isPasswordShown;
+
+                      });
+                     
+                     } ,icon:Icon(Icons.visibility)),
+                ),
+                PrimaryButton(
+                  title: 'REGISTER',
+                 onPressed: () {
+                  if(_formKey.currentState!.validate())
+                  _onSubmit();
+                }),
+                ],
                 ),
               ),
               
-              
-              Expanded(
+              ), 
+              Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -78,13 +132,16 @@ class LoginScreen extends StatelessWidget {
                     SecondaryButton(onPressed: () {}, title: 'Click here'),
                   ],
                 ),
-              ),
-              SecondaryButton(onPressed: () {}, title: 'REGISTER NEW USER'),
+              //),
+              //SecondaryButton(onPressed: () {}, title: 'REGISTER NEW USER'),
 
+              ),
+               SecondaryButton(onPressed: () {}, title: 'REGISTER NEW USER'),
             ],
-          ),
         )
+          )
       ),
+    )
     );
   }
 }
