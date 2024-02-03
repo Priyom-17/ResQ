@@ -1,6 +1,7 @@
 import 'package:assignment_saleheen/components/custom_text_field.dart';
 import 'package:assignment_saleheen/components/primary_button.dart';
 import 'package:assignment_saleheen/components/secondary_button.dart';
+import 'package:assignment_saleheen/register_child.dart';
 import 'package:assignment_saleheen/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               
-              Container(
+                Container(
                 height: MediaQuery.of(context).size.height*0.3,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -56,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
-              
+   
               Container(
                 height: MediaQuery.of(context).size.height*0.3,
                 child: Form(
@@ -108,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                      } ,icon:Icon(Icons.visibility)),
                 ),
                 PrimaryButton(
-                  title: 'REGISTER',
+                  title: 'LOGIN',
                  onPressed: () {
                   if(_formKey.currentState!.validate())
                   _onSubmit();
@@ -132,11 +133,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     SecondaryButton(onPressed: () {}, title: 'Click here'),
                   ],
                 ),
-              //),
-              //SecondaryButton(onPressed: () {}, title: 'REGISTER NEW USER'),
+              
 
               ),
-               SecondaryButton(onPressed: () {}, title: 'REGISTER NEW USER'),
+               SecondaryButton( title: 'REGISTER NEW USER',
+               onPressed: ()
+                {
+                  goTo(context, RegisterChildScreen());
+               }),
+           
             ],
         )
           )
