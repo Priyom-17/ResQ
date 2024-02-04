@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "897712585584",
+    "project_id": "emergenct-app",
+    "storage_bucket": "emergenct-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897712585584:android:4d49531ab57cfb8c15edb5",
+        "android_client_info": {
+          "package_name": "com.example.assignment_saleheen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPb5ngn8NQTqHOx9u8vgWoaUbbNHdwDys"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
