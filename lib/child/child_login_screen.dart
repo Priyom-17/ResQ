@@ -1,7 +1,8 @@
 import 'package:assignment_saleheen/components/custom_text_field.dart';
 import 'package:assignment_saleheen/components/primary_button.dart';
 import 'package:assignment_saleheen/components/secondary_button.dart';
-import 'package:assignment_saleheen/register_child.dart';
+import 'package:assignment_saleheen/child/register_child.dart';
+import 'package:assignment_saleheen/parent/parent_register_screen.dart';
 import 'package:assignment_saleheen/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -140,6 +141,11 @@ class _LoginScreenState extends State<LoginScreen> {
                onPressed: ()
                 {
                   goTo(context, RegisterChildScreen());
+               }),
+               SecondaryButton( title: 'REGISTER AS RESCUER',
+               onPressed: ()
+                {
+                  goTo(context, RegisterParentScreen());
                }),
            
             ],

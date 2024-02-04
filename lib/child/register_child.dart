@@ -2,7 +2,7 @@
 import 'package:assignment_saleheen/components/custom_text_field.dart';
 import 'package:assignment_saleheen/components/primary_button.dart';
 import 'package:assignment_saleheen/components/secondary_button.dart';
-import 'package:assignment_saleheen/login_screen.dart';
+import 'package:assignment_saleheen/child/child_login_screen.dart';
 import 'package:assignment_saleheen/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +40,7 @@ class _RegisterChildScreenState extends State<RegisterChildScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            "       Register as child         ",
+                            "       Register as User        ",
                             style: TextStyle(
                               fontSize: 30,
                               color: primaryColor,
