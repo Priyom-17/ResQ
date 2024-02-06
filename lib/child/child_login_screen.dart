@@ -1,3 +1,4 @@
+import 'package:assignment_saleheen/child/bottom_page.dart';
 import 'package:assignment_saleheen/components/custom_text_field.dart';
 import 'package:assignment_saleheen/components/primary_button.dart';
 import 'package:assignment_saleheen/components/secondary_button.dart';
@@ -18,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _formData = Map<String,Object>();
   _onSubmit(){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => BottomPage()));
     _formKey.currentState!.validate();
     print(_formData['email']);
     print(_formData['password']);
