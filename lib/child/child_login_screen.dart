@@ -1,3 +1,4 @@
+import 'package:assignment_saleheen/child/child_home_page.dart';
 import 'package:assignment_saleheen/components/custom_text_field.dart';
 import 'package:assignment_saleheen/components/primary_button.dart';
 import 'package:assignment_saleheen/components/secondary_button.dart';
@@ -22,9 +23,10 @@ class _LoginScreenState extends State<LoginScreen> {
     _formKey.currentState!.validate();
     try{
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email:"barry.allen@example.com",
-        password:"SuperSecretPassword"
+        email:_formData['email'].toString(),
+        password:_formData['password'].toString()
       );
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
 
     }on FirebaseAuthException catch(e){
         print(e);
@@ -126,6 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                    onPressed: () {
                     
                     if(_formKey.currentState!.validate())
+                    _formKey.currentState!.save();
                     _onSubmit();
                   }),
                   ],

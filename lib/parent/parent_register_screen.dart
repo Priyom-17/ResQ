@@ -12,20 +12,23 @@ class RegisterParentScreen extends StatefulWidget {
 }
 
 class _RegisterParentScreenState extends State<RegisterParentScreen> {
-  bool isPasswordShown = false;
+  bool isPasswordShown = true;
 
   final _formKey = GlobalKey<FormState>();
 
   final _formData = Map<String,Object>();
 
   _onSubmit(){
-    _formKey.currentState!.validate();
-    if (_formData['password']!=_formData['rpassword']) {
+    _formKey.currentState!.save();
+    showDialog(
+      barrierDismissible
+    )
+     {
       
       
-    } else {
+    } /*else {
       
-    }
+    }*/
     progressIndicator(context);
     print(_formData['email']);
     print(_formData['password']);
@@ -136,7 +139,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
                       _formData['cemail'] = cemail ?? "";
                     },
                      validate: (email){
-                          if(email!.isEmpty|| email.length<3 || !email.contains("@") ){
+                          if(email!.isEmpty|| email.length<3 ){
                             return 'enter correct email';
                           }
                           return null;
