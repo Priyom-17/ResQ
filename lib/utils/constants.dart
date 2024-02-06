@@ -10,3 +10,20 @@ void goTo(BuildContext context,Widget nextScreen){
                     builder: (context)=>nextScreen,
                     ));
 }
+
+dialogueBox(BuildContext context,String text)
+{
+  showDialog(
+    context: context,
+    builder: (context) =>AlertDialog(
+      title:Text(text),
+    ),
+    );
+}
+
+progresIndicator(BuildContext context)
+{
+  showDialog(
+      barrierDismissible:  false,
+      context: context, builder:  (context) => Center(child: CircularProgressIndicator()));
+}
