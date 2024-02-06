@@ -20,6 +20,13 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
 
   _onSubmit(){
     _formKey.currentState!.validate();
+    if (_formData['password']!=_formData['rpassword']) {
+      
+      
+    } else {
+      
+    }
+    progressIndicator(context);
     print(_formData['email']);
     print(_formData['password']);
 
@@ -40,7 +47,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            "       Register as Rescuer         ",
+                            "       Register as Parent     ",
                             style: TextStyle(
                               fontSize: 30,
                               color: primaryColor,
@@ -65,7 +72,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CustomTextField(
-                        hintText: 'Enter Your Department',
+                        hintText: 'Enter name',
                         textInputAction: TextInputAction.next,
                         keyboardtype: TextInputType.name,
                         prefix: Icon(Icons.person),
@@ -75,16 +82,16 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
                         },
                         validate: (email){
                           if(email!.isEmpty||email.length<3){
-                            return 'enter correct name';
+                            return 'enter correct email';
                           }
-                          return null;
+                          //return null;
             
                         }, 
                     
                       
                       ),
                       CustomTextField(
-                        hintText: 'Enter Phone',
+                        hintText: 'Enter phone',
                         textInputAction: TextInputAction.next,
                         keyboardtype: TextInputType.phone,
                         prefix: Icon(Icons.phone),
@@ -119,6 +126,31 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
                         },
                       
                       ),
+                    CustomTextField(
+                    hintText: 'Enter child email',
+                    textInputAction: TextInputAction.next,
+                    keyboardtype: TextInputType.emailAddress,
+                    prefix:Icon(Icons.person),
+                    onsave:(cemail)
+                    {
+                      _formData['cemail'] = cemail ?? "";
+                    },
+                     validate: (email){
+                          if(email!.isEmpty|| email.length<3 || !email.contains("@") ){
+                            return 'enter correct email';
+                          }
+                          return null;
+            
+                        },
+                    suffix:IconButton(
+                       onPressed: () {
+                        setState((){
+                           isPasswordShown = !isPasswordShown;
+            
+                        });
+                       
+                       } ,icon:Icon(Icons.visibility)),
+                  ),
                       CustomTextField(
                     hintText: 'Enter password',
                     isPassword: isPasswordShown,
@@ -150,7 +182,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
             
                     prefix: Icon(Icons.vpn_key_off_rounded),
                     onsave: (password){
-                      _formData['password']= password??"";
+                      _formData['rpassword']= password??"";
             
                     },
                      validate: (password){
