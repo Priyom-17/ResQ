@@ -4,6 +4,7 @@ import 'package:assignment_saleheen/components/primary_button.dart';
 import 'package:assignment_saleheen/components/secondary_button.dart';
 import 'package:assignment_saleheen/child/child_login_screen.dart';
 import 'package:assignment_saleheen/utils/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterChildScreen extends StatefulWidget {
@@ -19,7 +20,24 @@ class _RegisterChildScreenState extends State<RegisterChildScreen> {
   final _formData = Map<String,Object>();
 
   _onSubmit(){
-    _formKey.currentState!.validate();
+    _formKey.currentState!.save();
+    if (_formData['password'] != _formData['rpassword']) {
+      dialogueBox(context, 'passwords does not match');
+      
+    } else {
+      progresIndicator(context);
+      try{
+        FirebaseAuth auth=FirebaseAuth.instance;
+        auth.createUserWithEmailAndPassword(email: _formData['email'].toString(), password: _formData['password'].toString()).whenComplete(() => goTo(context,LoginScreen()));
+      } on FirebaseAuthException catch(e){
+        dialogueBox(context,e.toString());
+      }
+      
+      catch(e){
+        dialogueBox(context,e.toString());
+      }
+      
+    }
     print(_formData['email']);
     print(_formData['password']);
 
@@ -111,7 +129,7 @@ class _RegisterChildScreenState extends State<RegisterChildScreen> {
                           
                         },
                         validate: (email){
-                          if(email!.isEmpty||email.length<3||email.contains("@")){
+                          if(email!.isEmpty||email.length<3){
                             return 'enter correct email';
                           }
                           return null;
@@ -150,7 +168,7 @@ class _RegisterChildScreenState extends State<RegisterChildScreen> {
             
                     prefix: Icon(Icons.vpn_key_off_rounded),
                     onsave: (password){
-                      _formData['password']= password??"";
+                      _formData['rpassword']= password??"";
             
                     },
                      validate: (password){

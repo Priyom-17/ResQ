@@ -114,8 +114,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   PrimaryButton(
                     title: 'LOGIN',
                    onPressed: () {
-                    if(_formKey.currentState!.validate())
-                    _onSubmit();
+                    progresIndicator(context);
+                    //if(_formKey.currentState!.validate())
+                    //_onSubmit();
                   }),
                   ],
                   ),
@@ -139,12 +140,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 
       
                 ),
-                 SecondaryButton( title: 'REGISTER NEW USER',
+                 SecondaryButton( title: 'REGISTER As Child',
                  onPressed: ()
                   {
                     goTo(context, RegisterChildScreen());
                  }),
-                 SecondaryButton( title: 'REGISTER AS RESCUER',
+                 SecondaryButton( title: 'REGISTER As Parent',
                  onPressed: ()
                   {
                     goTo(context, RegisterParentScreen());
