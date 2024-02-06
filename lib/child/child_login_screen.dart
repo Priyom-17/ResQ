@@ -4,6 +4,7 @@ import 'package:assignment_saleheen/components/secondary_button.dart';
 import 'package:assignment_saleheen/child/register_child.dart';
 import 'package:assignment_saleheen/parent/parent_register_screen.dart';
 import 'package:assignment_saleheen/utils/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,8 +18,17 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isPasswordShown = false;
   final _formKey = GlobalKey<FormState>();
   final _formData = Map<String,Object>();
-  _onSubmit(){
+  _onSubmit()async{
     _formKey.currentState!.validate();
+    try{
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email:"barry.allen@example.com",
+        password:"SuperSecretPassword"
+      );
+
+    }on FirebaseAuthException catch(e){
+        print(e);
+    }
     print(_formData['email']);
     print(_formData['password']);
 
@@ -114,6 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   PrimaryButton(
                     title: 'LOGIN',
                    onPressed: () {
+                    //progressIndicator(context);
                     if(_formKey.currentState!.validate())
                     _onSubmit();
                   }),
