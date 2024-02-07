@@ -1,5 +1,7 @@
 
 import 'dart:math';
+import 'package:assignment_saleheen/child/profile.dart';
+
 import 'widgets/home_widgets/emergency.dart';
 import 'package:assignment_saleheen/widgets/home_widgets/CustomeCarouel.dart';
 import 'package:assignment_saleheen/widgets/home_widgets/custom_appbar.dart';
@@ -39,9 +41,9 @@ getRandomQuote() {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
           children:[
@@ -51,8 +53,10 @@ getRandomQuote() {
                  getRandomQuote();
               },
             ),
-            Expanded(child: ListView(
-              shrinkWrap: true,
+            Expanded(child: Column(
+              //shrinkWrap: true,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomCarouel(),
                 Padding(
@@ -78,8 +82,34 @@ getRandomQuote() {
           ],
           ),
         ),
+          bottomNavigationBar: BottomAppBar(
+        shadowColor: Colors.white,
+        surfaceTintColor: Colors.black,
+        elevation: 20,
+        height: 60,
+        color: Colors.white,
+        child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        IconButton(onPressed:(){
+      
+        }, icon: const Icon(Icons.dashboard,color: Colors.black,)),
+        
+        IconButton(onPressed:(){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfileScreen()));
+      
+        }, icon: const Icon(Icons.person,color: Colors.black,)),
+        
+        IconButton(onPressed:(){
+          
+        }, icon: const Icon(Icons.settings,color: Colors.black)),
+      
+      ],
         ),
-        );
+      ),
+      
+          ),
+    );
     
   }
 }
