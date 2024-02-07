@@ -43,7 +43,7 @@ class _RegisterChildScreenState extends State<RegisterChildScreen> {
             childEmail:_formData['email'].toString(),
             parentEmail:_formData['gemail'].toString(),
             id:v,
-
+            type:'child',
           );
           final jsonData=user.toJson();
           await db.set(jsonData).whenComplete(() {

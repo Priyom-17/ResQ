@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "615082195352",
-    "project_id": "resq-b1cb9",
-    "storage_bucket": "resq-b1cb9.appspot.com"
+    "project_number": "211106553973",
+    "project_id": "emergency-app-e4627",
+    "storage_bucket": "emergency-app-e4627.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:615082195352:android:d2d05dd682cd01077d53ed",
+        "mobilesdk_app_id": "1:211106553973:android:c609821f9373c6883fd83c",
         "android_client_info": {
           "package_name": "com.example.assignment_saleheen"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBPH9DGmvGeQExSTfdVGLvVG8toLJmvDck"
+          "current_key": "AIzaSyCc7ujevm7EOdOTPWKa1m_1H-TGvsarxCI"
         }
       ],
       "services": {
