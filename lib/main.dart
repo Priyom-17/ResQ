@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:assignment_saleheen/child/child_login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 // ignore: unused_import
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
           
           primarySwatch: Colors.blue,
         ),
-        home: LoginScreen());
+        home: (FirebaseAuth.instance.currentUser == null) ? LoginScreen() : HomeScreen(),
+    );
   }
 }

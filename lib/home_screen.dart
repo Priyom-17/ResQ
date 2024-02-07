@@ -1,5 +1,7 @@
 
 import 'dart:math';
+import 'package:assignment_saleheen/child/profile.dart';
+
 import 'widgets/home_widgets/emergency.dart';
 import 'package:assignment_saleheen/widgets/home_widgets/CustomeCarouel.dart';
 import 'package:assignment_saleheen/widgets/home_widgets/custom_appbar.dart';
@@ -51,8 +53,10 @@ getRandomQuote() {
                  getRandomQuote();
               },
             ),
-            Expanded(child: ListView(
-              shrinkWrap: true,
+            Expanded(child: Column(
+              //shrinkWrap: true,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomCarouel(),
                 Padding(
@@ -79,32 +83,26 @@ getRandomQuote() {
           ),
         ),
           bottomNavigationBar: BottomAppBar(
-        shadowColor: Colors.black,
+        shadowColor: Colors.white,
         surfaceTintColor: Colors.black,
         elevation: 20,
         height: 60,
-        color: Colors.black,
+        color: Colors.white,
         child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         IconButton(onPressed:(){
       
-        }, icon: const Icon(Icons.home,color: Colors.red,)),
+        }, icon: const Icon(Icons.dashboard,color: Colors.black,)),
+        
         IconButton(onPressed:(){
-          
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfileScreen()));
       
-        }, icon: const Icon(Icons.show_chart,color: Colors.white)),
+        }, icon: const Icon(Icons.person,color: Colors.black,)),
+        
         IconButton(onPressed:(){
           
-      
-        }, icon: const Icon(Icons.add_circle_outlined,color: Colors.white,)),
-        IconButton(onPressed:(){
-          
-      
-        }, icon: const Icon(Icons.note_alt,color: Colors.white)),
-        IconButton(onPressed:(){
-          
-        }, icon: const Icon(Icons.settings,color: Colors.white)),
+        }, icon: const Icon(Icons.settings,color: Colors.black)),
       
       ],
         ),
