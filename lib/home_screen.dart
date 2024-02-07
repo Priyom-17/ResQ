@@ -39,9 +39,9 @@ getRandomQuote() {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
           children:[
@@ -78,8 +78,40 @@ getRandomQuote() {
           ],
           ),
         ),
+          bottomNavigationBar: BottomAppBar(
+        shadowColor: Colors.black,
+        surfaceTintColor: Colors.black,
+        elevation: 20,
+        height: 60,
+        color: Colors.black,
+        child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        IconButton(onPressed:(){
+      
+        }, icon: const Icon(Icons.home,color: Colors.red,)),
+        IconButton(onPressed:(){
+          
+      
+        }, icon: const Icon(Icons.show_chart,color: Colors.white)),
+        IconButton(onPressed:(){
+          
+      
+        }, icon: const Icon(Icons.add_circle_outlined,color: Colors.white,)),
+        IconButton(onPressed:(){
+          
+      
+        }, icon: const Icon(Icons.note_alt,color: Colors.white)),
+        IconButton(onPressed:(){
+          
+        }, icon: const Icon(Icons.settings,color: Colors.white)),
+      
+      ],
         ),
-        );
+      ),
+      
+          ),
+    );
     
   }
 }
