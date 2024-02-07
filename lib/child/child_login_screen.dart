@@ -180,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                      SecondaryButton( title: 'REGISTER AS RESCUER',
                      onPressed: ()
                       {
-                        goTo(context, RegisterParentScreen());
+                        //goTo(context, RegisterParentScreen());
                      }),
                  
                   ],

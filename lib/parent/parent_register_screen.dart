@@ -1,9 +1,13 @@
 
-import 'package:assignment_saleheen/components/custom_text_field.dart';
+/*import 'package:assignment_saleheen/components/custom_text_field.dart';
 import 'package:assignment_saleheen/components/primary_button.dart';
 import 'package:assignment_saleheen/components/secondary_button.dart';
 import 'package:assignment_saleheen/child/child_login_screen.dart';
+import 'package:assignment_saleheen/model/user_model.dart';
 import 'package:assignment_saleheen/utils/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class RegisterParentScreen extends StatefulWidget {
@@ -17,9 +21,100 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
   final _formKey = GlobalKey<FormState>();
 
   final _formData = Map<String,Object>();
+  bool isLoading=false;
 
-  _onSubmit(){
+  
+  _onSubmit() async{
     _formKey.currentState!.save();
+    if (_formData['password'] != _formData['rpassword']) {
+      dialogueBox(context, 'passwords does not match');
+
+    } else {
+      progressIndicator(context);
+      try {
+        setState(() {
+        isLoading=true;
+      });
+  UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    email: _formData['email'].toString(),
+    password: _formData['password'].toString(),
+  );
+  if(userCredential.user!=null){
+    final v=userCredential.user!.uid;
+    DocumentReference<Map<String, dynamic>> db=FirebaseFirestore.instance.collection('users').doc(v);
+          
+          final user=UserModel(
+            name:_formData['name'].toString(),
+            phone:_formData['phone'].toString(),
+            childEmail:_formData['cemail'].toString(),
+            parentEmail:_formData['gemail'].toString(),
+            id:v,
+
+          );
+          final jsonData=user.toJson();
+          await db.set(jsonData).whenComplete(() {
+            goTo(context,LoginScreen());
+            setState(() {
+        isLoading=false;
+      });
+
+          });
+  }
+} on FirebaseAuthException catch (e) {
+  setState(() {
+        isLoading=true;
+      });
+  if (e.code == 'weak-password') {
+    print('The password provided is too weak.');
+    dialogueBox(context, 'The password provided is too weak.');
+  } else if (e.code == 'email-already-in-use') {
+    print('The account already exists for that email.');
+    dialogueBox(context, 'The account already exists for that email.');
+  }
+} catch (e) {
+  print(e);
+  setState(() {
+        isLoading=true;
+      });
+}
+     
+
+    }
+    print(_formData['email']);
+    print(_formData['password']);
+
+  }
+    _formKey.currentState!.save();
+    if(_formData['password']!= _formData['rpassword']) {
+      dialogueBox(context, 'passwords does not match');
+    }
+    else{
+      progressIndicator(context);
+      try{
+        FirebaseAuth auth =FirebaseAuth.instance;
+        auth.createUserWithEmailAndPassword(
+          email:_formData['email'].toString(),
+          password:_formData['password'].toString()).then((v)async{
+            DocumentReference<Map<String, dynamic>> db = FirebaseFirestore.instance.collection('users').doc(v.user!.uid);
+            final user = UserModel(
+            name:_formData['name'].toString(),
+            phone:_formData['phone'].toString(),
+            childEmail:_formData['cemail'].toString(),
+            parentEmail:_formData['gemail'].toString(),
+            id:v.user!.uid,
+
+          );
+          final jsonData=user.toJson();
+          await db.set(jsonData).whenComplete(() {
+            goTo(context,LoginScreen());
+      
+      });
+
+          });
+          });
+        
+      }
+    }
     showDialog(
       barrierDismissible
     )
@@ -32,8 +127,14 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
     progressIndicator(context);
     print(_formData['email']);
     print(_formData['password']);
+    
+      @override
+      Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+      }
 
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -229,4 +330,4 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
       ),
     );
   }
-}
+}*/
