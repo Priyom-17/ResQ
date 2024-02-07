@@ -3,8 +3,10 @@ import 'package:assignment_saleheen/components/custom_text_field.dart';
 import 'package:assignment_saleheen/components/primary_button.dart';
 import 'package:assignment_saleheen/components/secondary_button.dart';
 import 'package:assignment_saleheen/child/register_child.dart';
+import 'package:assignment_saleheen/parent/parent_home_sceen.dart';
 import 'package:assignment_saleheen/parent/parent_register_screen.dart';
 import 'package:assignment_saleheen/utils/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +35,21 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         isLoading=false;
       });
+      FirebaseFirestore.instance
+            .collection('users')
+            .doc(userCredential.user!.uid)
+            .get()
+            .then((value) {
+          if (value['type'] == 'parent') {
+            print(value['type']);
+            //MySharedPrefference.saveUserType('parent');
+            goTo(context, ParentHomeScreen());
+          } else {
+            //MySharedPrefference.saveUserType('child');
+
+            goTo(context, HomeScreen());
+          }
+        });
       goTo(context, HomeScreen());
     }
 } on FirebaseAuthException catch (e) {
@@ -63,8 +80,9 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.all(8.0),
             child:Stack(
               children: [
-                isLoading?progressIndicator(context):
-                SingleChildScrollView(
+                 isLoading
+                  ? progressIndicator(  context)
+                  : SingleChildScrollView(
                 child: Column(
                   children: [
                     

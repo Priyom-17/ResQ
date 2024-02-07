@@ -15,7 +15,7 @@ class RegisterParentScreen extends StatefulWidget {
   State<RegisterParentScreen> createState() => _RegisterParentScreenState();
 }
 
-class _RegisterParentScreenState extends State<RegisterParentScreen> {
+ class _RegisterParentScreenState extends State<RegisterParentScreen> {
   bool isPasswordShown = true;
 
   final _formKey = GlobalKey<FormState>();
@@ -49,6 +49,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
             childEmail:_formData['cemail'].toString(),
             parentEmail:_formData['gemail'].toString(),
             id:v,
+            type:'parent'
 
           );
           final jsonData=user.toJson();
