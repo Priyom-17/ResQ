@@ -1,5 +1,6 @@
 
 import 'dart:math';
+import 'package:assignment_saleheen/child/chat/chat_space.dart';
 import 'package:assignment_saleheen/child/profile.dart';
 
 import 'widgets/home_widgets/emergency.dart';
@@ -94,6 +95,10 @@ getRandomQuote() {
         IconButton(onPressed:(){
       
         }, icon: const Icon(Icons.dashboard,color: Colors.black,)),
+
+        IconButton(onPressed:(){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> Chat_Room()));
+        }, icon: const Icon(Icons.chat,color: Colors.black,)),
         
         IconButton(onPressed:(){
           Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfileScreen()));
